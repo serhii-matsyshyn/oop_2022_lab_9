@@ -12,3 +12,6 @@ Made by Serhii Matsyshyn
 - [GET] /api/get-order/{orderId}
 - [GET] /api/delivery/deliver/{orderId}
 - [GET] /api/payment/pay/{orderId}
+
+## Tests coverage:
+85% classes, 47% lines
