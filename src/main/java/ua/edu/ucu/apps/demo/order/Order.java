@@ -39,6 +39,15 @@ public class Order implements OrderInterface{
         this.deliveryStrategy = new Delivery(new PostDeliveryStrategy());
     }
 
+    // factory method
+    public static Order createOrderFlowers(ArrayList<Flower> items) {
+        ArrayList<Item> items1 = new ArrayList<>();
+        for (Flower item : items) {
+            items1.add(new Item(item, 1));
+        }
+        return new Order(items1);
+    }
+
     public double calculateTotalPrice(){
         double totalPrice = 0;
         for (Item item : items) {

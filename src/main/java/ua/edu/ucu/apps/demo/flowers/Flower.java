@@ -1,15 +1,23 @@
 package ua.edu.ucu.apps.demo.flowers;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
 import java.util.Objects;
 
 
 @Setter
 @ToString
+@AllArgsConstructor
+@Entity
+@Table
 public class Flower {
+    @javax.persistence.Id
+    @Id @GeneratedValue @Setter @Getter
+    private Long id;
     @Getter
     private FlowerType flowerType;
 

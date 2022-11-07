@@ -1,0 +1,42 @@
+GET http://localhost:8080/api/flowers-list
+
+###
+POST http://localhost:8080/api/add-flower
+Content-Type: application/json
+
+{
+  "flowerType": "ROSE",
+  "color": "RED",
+  "sepalLength": 150,
+  "price": 100
+}
+
+###
+POST http://localhost:8080/api/add-flower
+Content-Type: application/json
+
+{
+  "flowerType": "CHAMOMILE",
+  "color": "RED",
+  "sepalLength": 150,
+  "price": 100
+}
+
+###
+POST http://localhost:8080/api/order/create
+Content-Type: application/json
+
+[
+    {
+        "flowerType": "ROSE",
+        "color": "RED",
+        "price": 10,
+        "quantity": 1
+    },
+    {
+        "flowerType": "CHAMOMILE",
+        "color": "RED",
+        "price": 10,
+        "quantity": 1
+    }
+]
