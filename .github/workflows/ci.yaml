@@ -13,7 +13,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-#      - name: Test with Maven
+      - name: Setup docker
+        run: docker run --name oop-course -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 postgres
+
+      #      - name: Test with Maven
 #        run: mvn --batch-mode --update-snapshots package
       - name: Run tests
         run: mvn test
