@@ -14,14 +14,13 @@ public class FlowerController {
         this.flowerService = flowerService;
     }
 
-
-    @GetMapping("/api/flowers-list")
+    @GetMapping(value= {"/api/v1/flower", "/api/flowers-list"})
     public List<Flower> getFlowers() {
         return flowerService.getFlowers();
     }
 
     // addFlower post method with json body
-    @PostMapping("/api/add-flower")
+    @PostMapping(value= {"/api/add-flower", "/api/v1/flower"})
     public List<Flower> addFlower(@RequestBody Flower flower) {
         flowerService.addFlower(flower);
         return flowerService.getFlowers();

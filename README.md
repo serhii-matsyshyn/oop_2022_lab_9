@@ -19,9 +19,20 @@ Made by Serhii Matsyshyn
 
 
 ## Tests coverage:
-85% classes, 47% lines
+88% classes, 48% lines
 
 ## How to run:
+Setup DB with Docker
+```bash
+docker run --name oop-course -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 postgres
+```
+Run application
+```bash
+docker start oop-course
+```
+
+### Use updated file [test.http](src/test/test.http) to test important endpoints
+### Test manually
 #### Test getting flowers list from db:
 
 GET http://localhost:8080/api/flowers-list  
