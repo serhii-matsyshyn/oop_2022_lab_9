@@ -1,4 +1,4 @@
-# oop_2022_lab_8 Flower Store Continue
+# oop_2022_lab_8 Flower Store Forever
 
 Made by Serhii Matsyshyn
 
