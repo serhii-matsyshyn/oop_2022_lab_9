@@ -29,6 +29,11 @@ public class OrderController extends Order {
     }
 
     @GetMapping
+    public String hello() {
+        return "Hello! Please see https://github.com/serhii-matsyshyn/oop_2022_lab_9 for more information.";
+    }
+
+    @GetMapping
     @RequestMapping("/api/get-all-orders")
     public String getAllOrders() {
         return allOrders.toString();
