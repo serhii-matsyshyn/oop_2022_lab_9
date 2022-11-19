@@ -116,6 +116,7 @@ Content-Type: application/json
 
 #### Set order status to processed:
 When order status is set to processed, user will receive email (or receive information in other way) about it.  
+It uses Observer pattern to notify Customer when Order is processed.  
 GET http://localhost:8080/api/order/{orderId}/set-order-processed
 
 Example information in email:
