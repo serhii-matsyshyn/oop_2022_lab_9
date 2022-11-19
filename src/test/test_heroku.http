@@ -1,0 +1,67 @@
+POST https://flower-store-serhii-matsyshyn.herokuapp.com/api/add-flower
+Content-Type: application/json
+
+{
+  "flowerType": "ROSE",
+  "color": "RED",
+  "sepalLength": 150,
+  "price": 100
+}
+
+###
+POST https://flower-store-serhii-matsyshyn.herokuapp.com/api/add-flower
+Content-Type: application/json
+
+{
+  "flowerType": "CHAMOMILE",
+  "color": "RED",
+  "sepalLength": 150,
+  "price": 100
+}
+
+###
+GET https://flower-store-serhii-matsyshyn.herokuapp.com/api/flowers-list
+
+
+###
+POST https://flower-store-serhii-matsyshyn.herokuapp.com/api/order/create
+Content-Type: application/json
+
+[
+    {
+        "flowerType": "ROSE",
+        "color": "RED",
+        "price": 10,
+        "quantity": 1
+    },
+    {
+        "flowerType": "CHAMOMILE",
+        "color": "RED",
+        "price": 10,
+        "quantity": 1
+    }
+]
+
+###
+POST https://flower-store-serhii-matsyshyn.herokuapp.com/api/users/add
+Content-Type: application/json
+
+{
+  "email": "email@email.email",
+  "dob": "1990-01-01"
+}
+
+###
+GET https://flower-store-serhii-matsyshyn.herokuapp.com/api/users/all
+
+###
+POST https://flower-store-serhii-matsyshyn.herokuapp.com/api/order/{orderId}/addUser
+Content-Type: application/json
+
+{
+ "email": "email@email.email",
+ "dob": "1990-01-01"
+}
+
+###
+GET https://flower-store-serhii-matsyshyn.herokuapp.com/api/order/{orderId}/set-order-processed

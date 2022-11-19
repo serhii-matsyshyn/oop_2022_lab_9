@@ -2,6 +2,9 @@
 
 Made by Serhii Matsyshyn
 
+### Available online at https://flower-store-serhii-matsyshyn.herokuapp.com/
+
+
 ## Endpoints that are available:
 - [GET] /api/flowers-list
 - [POST] /api/add-flower
