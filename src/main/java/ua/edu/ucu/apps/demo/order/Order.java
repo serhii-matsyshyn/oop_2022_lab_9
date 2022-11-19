@@ -10,7 +10,9 @@ import ua.edu.ucu.apps.demo.flowers.*;
 import ua.edu.ucu.apps.demo.item.Item;
 import ua.edu.ucu.apps.demo.payment.PayPalPaymentStrategy;
 import ua.edu.ucu.apps.demo.payment.PaymentStrategy;
+import ua.edu.ucu.apps.demo.users.StoreUser;
 
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,6 +24,9 @@ public class Order implements OrderInterface{
     PaymentStrategy payment;
     DeliveryStrategy deliveryStrategy;
 
+    @Transient
+    OrderNotifier notifier;
+
 
     public Order() {
         this.orderId = UUID.randomUUID();
@@ -29,6 +34,7 @@ public class Order implements OrderInterface{
 
         this.payment = new PaymentStrategy(new PayPalPaymentStrategy());
         this.deliveryStrategy = new Delivery(new PostDeliveryStrategy());
+        this.notifier = new OrderNotifier();
     }
 
     public Order(ArrayList<Item> items) {
@@ -37,6 +43,7 @@ public class Order implements OrderInterface{
 
         this.payment = new PaymentStrategy(new PayPalPaymentStrategy());
         this.deliveryStrategy = new Delivery(new PostDeliveryStrategy());
+        this.notifier = new OrderNotifier();
     }
 
     // factory method
@@ -101,6 +108,9 @@ public class Order implements OrderInterface{
         System.out.println("Total price: " + calculateTotalPrice());
         System.out.println("Total quantity: " + getTotalQuantity());
         System.out.println("Payment: " + payment.pay(calculateTotalPrice()));
+        notifier.notifyUsers("Order was payed");
         System.out.println("Delivery: " + deliveryStrategy.deliver(this));
+        System.out.println("Order processed");
+        notifier.notifyUsers("Order processed");
     }
 }

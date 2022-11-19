@@ -1,4 +1,4 @@
-# oop_2022_lab_8 Flower Store Forever
+# oop_2022_lab_9 Flower Store Reboot
 
 Made by Serhii Matsyshyn
 
@@ -10,7 +10,11 @@ Made by Serhii Matsyshyn
 - [GET] /api/payment/all-payment-types
 - [GET] /api/order/create/randomFlowersPreOrder/{flowersCount}
 - [POST] /api/order/create
-
+- [GET] /api/order/{orderId}/set-order-processed
+- [POST] /api/order/{orderId}/addUser
+- [POST] /api/order/{orderId}/removeUser
+- [GET] /api/users/all
+- [POST] /api/users/add
 - [GET] /api/get-all-orders
 - [GET] /api/get-order/{orderId}
 - [GET] /api/delivery/deliver/{orderId}
@@ -31,7 +35,10 @@ Run application
 docker start oop-course
 ```
 
-### Use updated file [test.http](src/test/test.http) to test important endpoints
+## !!! Important:
+### Use updated file [test.http](src/test/test.http) to test endpoints (on localhost). Replace template values with your own (e.g. orderId that is generated during order, etc.)
+### Use updated file [test_heroku.http](src/test/test_heroku.http) to test endpoints (on heroku). Replace template values with your own (e.g. orderId that is generated during order, etc.)
+
 ### Test manually
 #### Test getting flowers list from db:
 
@@ -82,3 +89,37 @@ Content-Type: application/json
 "quantity": 1
 }
 ]
+
+### User and notifier:
+#### User add to db:
+POST http://localhost:8080/api/users/add
+Content-Type: application/json
+
+{
+"email": "email@email.email",
+"dob": "1990-01-01"
+}
+
+#### Get all users:
+GET http://localhost:8080/api/users/all
+
+#### User subscribe to notifier:
+When user subscribe to notifier, he will receive email (or receive information in other way) when order is processed.  
+
+POST http://localhost:8080/api/order/{orderId}/addUser
+Content-Type: application/json
+
+{
+"email": "email@email.email",
+"dob": "1990-01-01"
+}
+
+#### Set order status to processed:
+When order status is set to processed, user will receive email (or receive information in other way) about it.  
+GET http://localhost:8080/api/order/{orderId}/set-order-processed
+
+Example information in email:
+```
+User email@email.email was notified that: Order 31daf4cc-693b-46db-a8f4-610ac10cb899 is processed
+```
+

@@ -8,6 +8,7 @@ import ua.edu.ucu.apps.demo.flowers.FlowerController;
 import ua.edu.ucu.apps.demo.flowers.FlowerRepository;
 import ua.edu.ucu.apps.demo.flowers.FlowerService;
 import ua.edu.ucu.apps.demo.item.Item;
+import ua.edu.ucu.apps.demo.users.StoreUser;
 
 import java.util.*;
 
@@ -74,4 +75,27 @@ public class OrderController extends Order {
         allOrders.put(order.getOrderId(), order);
         return order.toString();
     }
+
+    @GetMapping("/api/order/{orderId}/set-order-processed")
+    public String setOrderProcessedExternal(@PathVariable("orderId") UUID orderId) {
+        Order order = allOrders.get(orderId);
+        order.deliveryStrategy.deliver(order);
+        order.notifier.notifyUsers("Order " + order.getOrderId() + " is processed");
+        return order.toString();
+    }
+
+    @PostMapping("/api/order/{orderId}/addUser")
+    public String addUserToOrder(@PathVariable("orderId") UUID orderId, @RequestBody StoreUser user) {
+        Order order = allOrders.get(orderId);
+        order.notifier.addUser(user);
+        return order.toString();
+    }
+
+    @PostMapping("/api/order/{orderId}/removeUser")
+    public String removeUserFromOrder(@PathVariable("orderId") UUID orderId, @RequestBody StoreUser user) {
+        Order order = allOrders.get(orderId);
+        order.notifier.removeUser(user);
+        return order.toString();
+    }
+
 }
